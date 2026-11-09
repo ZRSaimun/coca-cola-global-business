@@ -17,7 +17,8 @@
   const progress = document.querySelector('#journeyProgress');
   const prevBtn = document.querySelector('#journeyPrevBtn');
   const nextBtn = document.querySelector('#journeyNextBtn');
-  const FRAME_COUNT = 8;
+  const SOURCE_FRAMES_PER_STAGE = 8;
+  const FRAME_COUNT = SOURCE_FRAMES_PER_STAGE * 2;
 
   const stages = list ? [...list.querySelectorAll('li')].map(li => ({
     sequence: li.dataset.sequence,
@@ -26,9 +27,19 @@
     captionHTML: li.querySelector('p').innerHTML,
     actor: li.dataset.actor || ''
   })) : [];
-  const frames = stages.flatMap(s => Array.from({length: FRAME_COUNT}, (_, i) =>
-    `assets/bottle-journey/sequence/${s.sequence}-${String(i + 1).padStart(2, '0')}.webp`));
-  const pictures = frames.map(src => { const img = new Image(); img.src = src; return img; });
+  // Each source is a two-panel storyboard. Split its panels into consecutive
+  // virtual frames so the scroll reads as one full scene at a time.
+  const frames = stages.flatMap(s => Array.from({length: FRAME_COUNT}, (_, i) => ({
+    src: `assets/bottle-journey/sequence/${s.sequence}-${String(Math.floor(i / 2) + 1).padStart(2, '0')}.webp`,
+    panel: i % 2
+  })));
+  const imageCache = new Map();
+  const pictures = frames.map(frame => {
+    if (!imageCache.has(frame.src)) {
+      const img = new Image(); img.src = frame.src; imageCache.set(frame.src, img);
+    }
+    return imageCache.get(frame.src);
+  });
   const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
   const ease = t => t * t * (3 - 2 * t);
   let enabled = false, raf = 0, activeStage = -1, paintedFrame = '', canvasWidth = 0, canvasHeight = 0, shownFraction = 0, targetFraction = 0;
@@ -50,23 +61,31 @@
     canvasWidth = w; canvasHeight = h; paintedFrame = -1;
   }
 
-  function drawCover(img, x, y, w, h) {
-    const scale = Math.max(w / img.naturalWidth, h / img.naturalHeight);
-    const dw = img.naturalWidth * scale, dh = img.naturalHeight * scale;
-    ctx.drawImage(img, x + (w - dw) / 2, y + (h - dh) / 2, dw, dh);
+  function panelRect(img, panel) {
+    const halfHeight = img.naturalHeight / 2;
+    return {sx:0, sy:panel * halfHeight, sw:img.naturalWidth, sh:halfHeight};
   }
 
-  function drawContained(img, alpha = 1) {
-    const w = canvasWidth, h = canvasHeight;
-    const mobile = w <= 780;
+  function drawPanelCover(img, panel, x, y, w, h) {
+    const r = panelRect(img, panel);
+    const scale = Math.max(w / r.sw, h / r.sh);
+    const dw = r.sw * scale, dh = r.sh * scale;
+    ctx.drawImage(img, r.sx, r.sy, r.sw, r.sh, x + (w - dw) / 2, y + (h - dh) / 2, dw, dh);
+  }
+
+  function drawContained(frameIndex, alpha = 1) {
+    const frame = frames[frameIndex], img = pictures[frameIndex];
+    if (!img?.complete || !img.naturalWidth) return;
+    const r = panelRect(img, frame.panel);
+    const w = canvasWidth, h = canvasHeight, mobile = w <= 780;
     const maxW = mobile ? w * .96 : w * .70;
     const maxH = mobile ? h * (h < 680 ? .45 : .54) : h * .90;
-    const scale = Math.min(maxW / img.naturalWidth, maxH / img.naturalHeight);
-    const dw = img.naturalWidth * scale, dh = img.naturalHeight * scale;
+    const scale = Math.min(maxW / r.sw, maxH / r.sh);
+    const dw = r.sw * scale, dh = r.sh * scale;
     const x = mobile ? (w - dw) / 2 : clamp(w * .67 - dw / 2, w * .29, w - dw);
     const y = mobile ? Math.max(12, h * .035) : (h - dh) / 2;
     ctx.globalAlpha = alpha;
-    ctx.drawImage(img, x, y, dw, dh);
+    ctx.drawImage(img, r.sx, r.sy, r.sw, r.sh, x, y, dw, dh);
     ctx.globalAlpha = 1;
   }
 
@@ -75,22 +94,28 @@
     const lower = clamp(Math.floor(position), 0, pictures.length - 1);
     const upper = Math.min(pictures.length - 1, lower + 1);
     const mix = position - lower;
-    const first = pictures[lower]?.complete && pictures[lower].naturalWidth ? pictures[lower] : null;
-    const second = pictures[upper]?.complete && pictures[upper].naturalWidth ? pictures[upper] : null;
-    if (!first && !second) return;
+    const lowerImg = pictures[lower];
+    const upperImg = pictures[upper];
+    const firstReady = lowerImg?.complete && lowerImg.naturalWidth;
+    const secondReady = upperImg?.complete && upperImg.naturalWidth;
+    if (!firstReady && !secondReady) return;
     const signature = `${lower}:${upper}:${mix.toFixed(3)}`;
     if (signature === paintedFrame) return;
-    const base = first || second;
+    const baseIndex = firstReady ? lower : upper;
+    const base = pictures[baseIndex], basePanel = frames[baseIndex].panel;
     const w = canvasWidth, h = canvasHeight;
     ctx.fillStyle = '#080d11';
     ctx.fillRect(0, 0, w, h);
     ctx.save();
     ctx.filter = 'blur(28px) brightness(.42) saturate(.8)';
-    drawCover(base, -32, -32, w + 64, h + 64);
+    drawPanelCover(base, basePanel, -32, -32, w + 64, h + 64);
     ctx.restore();
-    drawContained(base, second && first ? 1 - mix : 1);
-    if (second && first && upper !== lower) drawContained(second, mix);
-    else if (second && !first) drawContained(second, 1);
+    if (firstReady && secondReady && upper !== lower) {
+      drawContained(lower, 1 - mix);
+      drawContained(upper, mix);
+    } else {
+      drawContained(baseIndex, 1);
+    }
     paintedFrame = signature;
   }
 
@@ -143,7 +168,7 @@
     nextBtn.addEventListener('click', () => goToStage(activeStage + 1));
     window.addEventListener('scroll', requestPaint, {passive:true});
     window.addEventListener('resize', () => { setCanvasSize(); requestPaint(); }, {passive:true});
-    pictures.forEach(img => img.addEventListener('load', requestPaint, {once:true}));
+    [...new Set(pictures)].forEach(img => img.addEventListener('load', requestPaint, {once:true}));
     const sync = () => (reduceMotion.matches ? disable() : enable());
     reduceMotion.addEventListener ? reduceMotion.addEventListener('change', sync) : reduceMotion.addListener(sync);
     sync();
