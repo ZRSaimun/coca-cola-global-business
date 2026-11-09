@@ -4,6 +4,7 @@
 .hero-webgl{position:absolute;right:-3%;top:0;width:min(76%,1100px);height:100%;z-index:1;pointer-events:none;opacity:0;transition:opacity 1s ease;filter:drop-shadow(0 25px 40px rgba(0,0,0,.3))}
 .hero.webgl-ready .hero-webgl{opacity:1}
 .hero.webgl-ready .hero-fallback{opacity:.045}
+.hero-webgl-status[hidden]{display:none}
 .hero-webgl-status{position:absolute;z-index:3;right:clamp(24px,7vw,110px);bottom:82px;display:flex;align-items:center;gap:9px;padding:8px 11px;border:1px solid rgba(255,255,255,.19);background:rgba(13,20,27,.52);backdrop-filter:blur(10px);font-size:8px;letter-spacing:.16em;color:#d8dcdd}
 .hero-webgl-status i{width:6px;height:6px;border-radius:50%;background:#e51d3f;box-shadow:0 0 12px #e51d3f;animation:signal 2s ease-in-out infinite}
 .hero-copy{z-index:2;animation:copyLift .8s cubic-bezier(.2,.7,.25,1) both}
