@@ -5,23 +5,30 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#101820">
   <link rel="icon" type="image/svg+xml" href="assets/favicon.svg?v=3">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png?v=1">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png?v=1">
   <meta name="description" content="A phone-friendly companion to our BUSI-1763 group mind map on Coca-Cola’s global business strategy, international production network and local adaptation.">
   <title>Coca-Cola | Global Business Strategy</title>
+  <meta property="og:title" content="Coca-Cola: Global Business Strategy · BUSI-1763 group project">
+  <meta property="og:description" content="Student research companion to our A1 mind map: four module lenses, a value-chain journey and sourced evidence.">
+  <meta property="og:image" content="https://zrsaimun.github.io/coca-cola-global-business/assets/poster-preview.jpg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
-  <link rel="stylesheet" href="cinematic.css?v=2">
+  <link rel="stylesheet" href="styles.css?v=4">
+  <link rel="stylesheet" href="cinematic.css?v=4">
 </head>
 <body>
+  <a class="skip-link" href="#main">Skip to content</a>
   <div class="grain" aria-hidden="true"></div>
   <header class="topbar">
     <a class="brand" href="#top" aria-label="Coca-Cola global business presentation home"><span class="brand-mark">C</span><span>BUSI<span class="brand-dash">—</span>1763 <small>GROUP MIND MAP</small></span></a>
-    <nav aria-label="Main navigation"><a href="#journey">Bottle journey</a><a href="#poster">Poster</a><a href="#framework">Four lenses</a><a href="#sources">Sources</a></nav>
+    <nav aria-label="Main navigation"><a href="#journey">Value chain</a><a href="#poster">A1 mind map</a><a href="#framework">Four lenses</a><a href="#sources">Sources</a></nav>
     <a class="top-cta" href="#framework">Explore the research <span>↘</span></a>
   </header>
 
-  <main id="top">
+  <main id="main">
+    <span id="top"></span>
     <section class="hero" aria-labelledby="hero-title">
       <div class="hero-art" aria-hidden="true"></div>
       <img class="hero-fallback" src="assets/bottle-journey/frame-10.webp" alt="A local café server hands a chilled contour glass bottle to a customer" fetchpriority="high">
@@ -30,39 +37,53 @@
         <p class="eyebrow"><i></i> DYNAMICS OF GLOBAL BUSINESS AND PRACTICES</p>
         <h1 id="hero-title">One global brand.<br><em>Many local worlds.</em></h1>
         <p class="hero-lede">How does Coca-Cola coordinate a worldwide business while relying on local bottlers, markets and institutions?</p>
-        <div class="hero-actions"><a class="button button-red" href="#poster">View the poster <span>↓</span></a><button class="button button-glass" id="openDeck" type="button">Explore the four lenses <span>↗</span></button></div>
+        <div class="hero-actions"><a class="button button-red" href="#journey">Follow the bottle <span>↓</span></a><a class="button button-glass" href="#poster">A1 mind map <span>↓</span></a><button class="button button-glass" id="openDeck" type="button">Four lenses <span>↗</span></button></div>
         <p class="hero-note"><span class="live-dot"></span> A student group research presentation · BUSI-1763</p>
       </div>
       <div class="hero-stamp"><span>GLOBAL<br>REACH</span><b>×</b><span>LOCAL<br>DELIVERY</span></div>
-      <div class="hero-bottomline"><span>GLOBAL BUSINESS STRATEGY</span><span>01 / 04 MODULE LENSES</span></div>
+      <div class="hero-bottomline"><span>GLOBAL BUSINESS STRATEGY</span><span>FOUR MODULE LENSES · ONE SYSTEM</span></div>
     </section>
 
-    <section class="bottle-journey" id="journey" aria-labelledby="journey-title">
+    <section class="bottle-journey" id="journey" aria-labelledby="journey-heading">
+      <div class="journey-intro section-wrap">
+        <p class="eyebrow red-eyebrow">LENS 03 IN MOTION · GLOBAL VALUE CHAIN</p>
+        <h2 id="journey-heading">Follow one bottle <em>from inputs to a customer.</em></h2>
+        <p>Seven stages show where different organisations add value in the Coca-Cola system: suppliers, the company’s brand and concentrate, local bottlers, retailers and customers <a href="#source-1">[1]</a> <a href="#source-2">[2]</a>. Scroll through the scene, or use the stage buttons.</p>
+        <a class="journey-skip" href="#poster">Skip the journey <span>↓</span></a>
+      </div>
+
       <div class="journey-scroll" id="journeyScroll">
         <div class="journey-sticky">
           <div class="journey-photo" aria-hidden="true">
-            <img id="journeyCurrent" src="assets/bottle-journey/frame-01.webp" alt="" fetchpriority="high">
-            <img id="journeyNext" src="assets/bottle-journey/frame-02.webp" alt="">
+            <img class="journey-layer" id="journeyLayerA" src="assets/bottle-journey/frame-01.webp" alt="" decoding="async">
+            <img class="journey-layer" id="journeyLayerB" src="assets/bottle-journey/frame-02.webp" alt="" decoding="async">
             <div class="journey-shade"></div>
           </div>
           <div class="journey-content">
-            <p class="journey-eyebrow"><span></span> GLOBAL VALUE CHAIN · 10 STAGES</p>
-            <p class="journey-stage" id="journeyStage">01 / 10 · INPUTS</p>
-            <h2 id="journey-title">From raw materials to a local customer.</h2>
-            <p class="journey-caption" id="journeyCaption">Scroll to follow a bottle through the production and delivery network.</p>
+            <p class="journey-stage" id="journeyStage">01 / 07 · RAW MATERIALS &amp; PACKAGING</p>
+            <h3 class="journey-title" id="journeyTitle">It begins with inputs from many suppliers.</h3>
+            <p class="journey-caption" id="journeyCaption">Ingredients and packaging materials enter the system from a wide supplier base.</p>
+            <p class="journey-actor" id="journeyActor">Who adds value: <b>suppliers</b></p>
             <div class="journey-controls">
-              <button class="journey-control" id="journeyPrev" type="button" aria-label="Go to the previous stage">←</button>
-              <div class="journey-meter" role="progressbar" aria-label="Bottle journey progress" aria-valuemin="1" aria-valuemax="10" aria-valuenow="1">
-                <span id="journeyMeter"></span>
-              </div>
-              <button class="journey-control" id="journeyNext" type="button" aria-label="Go to the next stage">→</button>
+              <button class="journey-control" id="journeyPrevBtn" type="button" aria-label="Previous stage">←</button>
+              <div class="journey-meter" id="journeyProgress" role="progressbar" aria-label="Bottle journey progress" aria-valuemin="1" aria-valuemax="7" aria-valuenow="1"><span id="journeyMeter"></span></div>
+              <button class="journey-control" id="journeyNextBtn" type="button" aria-label="Next stage">→</button>
             </div>
-            <p class="journey-hint">SCROLL TO MOVE THROUGH THE STORY <span>·</span> REVERSE SCROLL TO GO BACK</p>
           </div>
-          <div class="journey-counter" id="journeyCounter" aria-hidden="true">01 <span>/</span> 10</div>
+          <nav class="journey-rail" aria-label="Jump to a stage of the bottle journey" id="journeyRail"></nav>
         </div>
       </div>
-      <p class="journey-note">Illustrative sequence of a global production and bottling network. It does not depict a specific Coca-Cola facility; processes vary by market.</p>
+
+      <ol class="journey-steps section-wrap" id="journeySteps">
+        <li data-frame="01" data-actor="suppliers"><img src="assets/bottle-journey/frame-01.webp" alt="Illustration: a technician checks trays of raw materials beside a furnace, with trucks and a container port behind" loading="lazy"><div><span class="step-no">01 · RAW MATERIALS &amp; PACKAGING</span><h3>It begins with inputs from many suppliers.</h3><p>Ingredients and packaging materials enter the system from a wide supplier base.</p></div></li>
+        <li data-frame="02" data-actor="packaging suppliers"><img src="assets/bottle-journey/frame-02.webp" alt="Illustration: glowing glass bottles being formed inside a moulding machine" loading="lazy"><div><span class="step-no">02 · BOTTLE PRODUCTION</span><h3>Packaging takes shape.</h3><p>Containers such as the contour glass bottle are produced before they reach the filling line.</p></div></li>
+        <li data-frame="05" data-actor="the company (concentrate) and bottler"><img src="assets/bottle-journey/frame-05.webp" alt="Illustration: cola begins to pour into an empty glass bottle on a filling line" loading="lazy"><div><span class="step-no">03 · BEVERAGE PREPARATION &amp; FILLING</span><h3>Concentrate becomes a finished drink.</h3><p>The company makes concentrates and syrups; local bottlers mix them into finished drinks, then bottle and package them <a href="#source-2">[2]</a>.</p></div></li>
+        <li data-frame="06" data-actor="bottler, under company standards"><img src="assets/bottle-journey/frame-06.webp" alt="Illustration: a filled bottle stands under the filling nozzle beside a row of empty bottles" loading="lazy"><div><span class="step-no">04 · QUALITY CHECKS</span><h3>The fill is checked against standards.</h3><p>Bottling contracts set product rules, so quality depends partly on partner performance <a href="#source-1">[1]</a> <a href="#source-5">[5]</a>.</p></div></li>
+        <li data-frame="09" data-actor="local bottler"><img src="assets/bottle-journey/frame-09.webp" alt="Illustration: a delivery worker hands a red crate of bottles to a shopkeeper outside a small store" loading="lazy"><div><span class="step-no">05 · BOTTLING &amp; LOCAL DISTRIBUTION</span><h3>A local partner moves the product.</h3><p>Independent bottlers package and distribute drinks within their territories <a href="#source-1">[1]</a>.</p></div></li>
+        <li data-frame="09" data-actor="retailers"><img src="assets/bottle-journey/frame-09.webp" alt="Illustration: the shopkeeper holds a bottle of cola at the shop entrance" loading="lazy"><div><span class="step-no">06 · RETAIL &amp; CAFÉ</span><h3>Shops and cafés make the sale.</h3><p>Retail and food-service outlets connect a global brand with a local market.</p></div></li>
+        <li data-frame="10" data-actor="customers"><img src="assets/bottle-journey/frame-10.webp" alt="Illustration: a café server hands a chilled bottle to a customer at an outdoor table" loading="lazy"><div><span class="step-no">07 · CUSTOMER</span><h3>The journey ends with a local customer.</h3><p>One global brand, delivered through many local businesses.</p></div></li>
+      </ol>
+      <p class="journey-note"><b>About these images:</b> illustrative visuals of a generic production and bottling network, not photographs of a real Coca-Cola facility. Processes vary by market and bottler. Unmarked captions are our summary; numbered links point to the evidence.</p>
     </section>
 
     <section class="stats section-wrap" aria-label="Company reported figures">
@@ -73,20 +94,21 @@
     </section>
 
     <section class="poster-section section-wrap" id="poster">
-      <div class="section-heading"><div><p class="eyebrow red-eyebrow">THE WHOLE MAP, UP CLOSE</p><h2>Start with the <em>poster.</em></h2></div><p>Pinch to zoom on your phone, or open the print-ready A1 file. The sections below unpack each branch in a larger, easier-to-read format.</p></div>
-      <div class="poster-frame"><div class="poster-toolbar"><span><i class="tiny-red"></i> COCA-COLA · GLOBAL BUSINESS STRATEGY</span><span>A1 · LANDSCAPE</span></div><a href="assets/poster-preview.jpg" target="_blank" rel="noopener" class="poster-image-link" aria-label="Open the full-size poster image in a new tab"><img src="assets/poster-preview.jpg" alt="Full Coca-Cola global business strategy mind map poster, with four topic branches and references" loading="lazy"></a><div class="poster-actions"><span>Tap the image to open a zoomable view</span><a class="text-link" href="assets/coca-cola-a1-poster.pdf" target="_blank" rel="noopener">Open or download the A1 poster PDF <span>↗</span></a></div></div>
+      <div class="section-heading"><div><p class="eyebrow red-eyebrow">THE WHOLE MAP, UP CLOSE</p><h2>Start with the <em>A1 mind map.</em></h2></div><p>Pinch to zoom on your phone, or open the print-ready A1 file. The four lenses below unpack each branch in a larger, easier-to-read format, with the same numbered references.</p></div>
+      <div class="poster-frame"><div class="poster-toolbar"><span><i class="tiny-red"></i> COCA-COLA · GLOBAL BUSINESS STRATEGY</span><span>A1 · LANDSCAPE</span></div><a href="assets/poster-preview.jpg?v=4" target="_blank" rel="noopener" class="poster-image-link" aria-label="Open the full-size poster image in a new tab"><img src="assets/poster-preview.jpg?v=4" width="1600" height="1131" alt="A1 mind map poster: Coca-Cola’s global business strategy, with headline figures, four module-lens branches around a central bottle image, the group conclusion and selected references" loading="lazy"></a><div class="poster-actions"><span>Tap the image to open a zoomable view</span><a class="text-link" href="assets/coca-cola-a1-poster.pdf?v=4" target="_blank" rel="noopener" type="application/pdf">Open the print-ready A1 PDF <small>(vector, 89&nbsp;KB)</small> <span>↗</span></a></div></div>
     </section>
 
     <section class="framework section-wrap" id="framework">
       <div class="section-heading"><div><p class="eyebrow red-eyebrow">FOUR CONNECTED QUESTIONS</p><h2>Explore the <em>strategy.</em></h2></div><p>Each branch uses a module lens to explain how the Coca-Cola system works—and where the trade-offs sit.</p></div>
+      <p class="evidence-key" aria-label="How evidence is labelled"><span><i class="tag-company">COMPANY</i> Coca-Cola disclosures [1–2]</span><span><i class="tag-independent">INDEPENDENT</i> Institutional &amp; academic sources [3–8]</span><span><i class="tag-group">OURS</i> Group interpretation and recommendations</span></p>
       <div class="lens-grid">
-        <article class="lens-card lens-red" data-slide="0"><div class="lens-top"><span class="lens-number">01</span><span class="lens-kicker">SPEAKER ONE</span><span class="lens-icon">↗</span></div><p class="lens-label">GLOBAL REACH / LOCAL RESPONSE</p><h3>Globalisation &amp;<br>local adaptation</h3><p class="lens-summary">Shared brand assets meet local tastes, bottlers and rules.</p><ul><li>Products sold in more than 200 countries and territories; about 2.2 billion servings a day <a href="#source-1">[1]</a>.</li><li>Independent bottlers mix, package and distribute drinks in their territories <a href="#source-2">[2]</a>.</li><li>The strategic balance is global consistency with local adaptation in tastes, prices, language and regulation <a href="#source-8">[8]</a>.</li></ul><div class="lens-takeaway"><span>OUR ANALYSIS</span><p>Local partners extend the system’s reach, while making coordination a strategic risk.</p></div><button class="card-open" type="button" aria-label="Open globalisation and local adaptation in presentation view">Open this lens <span>↗</span></button></article>
+        <article class="lens-card lens-red" data-slide="0"><div class="lens-top"><span class="lens-number">01</span><span class="lens-kicker">MODULE LENS</span><span class="lens-icon">↗</span></div><p class="lens-label">GLOBAL REACH / LOCAL RESPONSE</p><h3>Globalisation &amp;<br>local adaptation</h3><p class="lens-summary">Shared brand assets meet local tastes, bottlers and rules.</p><ul><li>Products sold in more than 200 countries and territories; about 2.2 billion servings a day <a href="#source-1">[1]</a>.</li><li>Independent bottlers mix, package and distribute drinks in their territories <a href="#source-2">[2]</a>.</li><li>The strategic balance is global consistency with local adaptation in tastes, prices, language and regulation <a href="#source-8">[8]</a>.</li></ul><div class="lens-takeaway"><span>OUR INTERPRETATION · ANALYSIS</span><p>Local partners extend the system’s reach, while making coordination a strategic risk.</p></div><button class="card-open" type="button" aria-label="Open globalisation and local adaptation in presentation view">Open this lens <span>↗</span></button></article>
 
-        <article class="lens-card lens-blue" data-slide="1"><div class="lens-top"><span class="lens-number">02</span><span class="lens-kicker">SPEAKER TWO</span><span class="lens-icon">◎</span></div><p class="lens-label">OWNERSHIP / CONTROL / PARTNERSHIP</p><h3>Foreign direct<br>investment</h3><p class="lens-summary">The company uses a mixed model of ownership and independent bottling.</p><ul><li>A bottling contract on its own is not foreign direct investment; FDI involves a lasting investment relationship and influence <a href="#source-3">[3]</a>.</li><li>Most branded drinks are handled by independent bottlers that are separate companies <a href="#source-1">[1]</a>.</li><li>The OLI lens: brand and concentrates (ownership), local market access (location), and whether to contract or own (internalisation) <a href="#source-4">[4]</a>.</li></ul><div class="lens-takeaway"><span>TRADE-OFF</span><p>Ownership can add control, but needs capital and management attention; partners contribute local capability.</p></div><button class="card-open" type="button" aria-label="Open foreign direct investment in presentation view">Open this lens <span>↗</span></button></article>
+        <article class="lens-card lens-blue" data-slide="1"><div class="lens-top"><span class="lens-number">02</span><span class="lens-kicker">MODULE LENS</span><span class="lens-icon">◎</span></div><p class="lens-label">OWNERSHIP / CONTROL / PARTNERSHIP</p><h3>Foreign direct<br>investment</h3><p class="lens-summary">The company uses a mixed model of ownership and independent bottling.</p><ul><li>A bottling contract on its own is not foreign direct investment; FDI involves a lasting investment relationship and influence <a href="#source-3">[3]</a>.</li><li>Most branded drinks are handled by independent bottlers that are separate companies <a href="#source-1">[1]</a>.</li><li>The OLI lens: brand and concentrates (ownership), local market access (location), and whether to contract or own (internalisation) <a href="#source-4">[4]</a>.</li></ul><div class="lens-takeaway"><span>OUR INTERPRETATION · TRADE-OFF</span><p>Ownership can add control, but needs capital and management attention; partners contribute local capability.</p></div><button class="card-open" type="button" aria-label="Open foreign direct investment in presentation view">Open this lens <span>↗</span></button></article>
 
-        <article class="lens-card lens-teal" data-slide="2"><div class="lens-top"><span class="lens-number">03</span><span class="lens-kicker">SPEAKER THREE</span><span class="lens-icon">⌁</span></div><p class="lens-label">FROM INPUTS TO THE CUSTOMER</p><h3>Global value chains<br>&amp; networks</h3><p class="lens-summary">Value is created across a connected network of suppliers, Coca-Cola and bottlers.</p><div class="chain-mini"><span>Suppliers</span><b>→</b><span>Brand +<br>concentrate</span><b>→</b><span>Bottlers</span><b>→</b><span>Retail</span><b>→</b><span>Customers</span></div><ul><li>Coca-Cola provides brands and concentrates; suppliers and bottlers contribute inputs and production <a href="#source-1">[1]</a> <a href="#source-2">[2]</a>.</li><li>The five largest independent bottlers handled 44% of 2025 worldwide unit case volume <a href="#source-1">[1]</a>.</li><li>Contracts set territory rights and product rules while bottlers remain independent companies <a href="#source-5">[5]</a>.</li></ul><div class="lens-takeaway"><span>DEPENDENCY</span><p>Quality, supply continuity and brand reputation partly depend on partner performance.</p></div><button class="card-open" type="button" aria-label="Open global value chains in presentation view">Open this lens <span>↗</span></button></article>
+        <article class="lens-card lens-teal" data-slide="2"><div class="lens-top"><span class="lens-number">03</span><span class="lens-kicker">MODULE LENS</span><span class="lens-icon">⌁</span></div><p class="lens-label">FROM INPUTS TO THE CUSTOMER</p><h3>Global value chains<br>&amp; networks</h3><p class="lens-summary">Value is created across a connected network of suppliers, Coca-Cola and bottlers.</p><div class="chain-mini"><span>Suppliers</span><b>→</b><span>Brand +<br>concentrate</span><b>→</b><span>Bottlers</span><b>→</b><span>Retail</span><b>→</b><span>Customers</span></div><ul><li>Coca-Cola provides brands and concentrates; suppliers and bottlers contribute inputs and production <a href="#source-1">[1]</a> <a href="#source-2">[2]</a>.</li><li>The five largest independent bottlers handled 44% of 2025 worldwide unit case volume <a href="#source-1">[1]</a>.</li><li>Contracts set territory rights and product rules while bottlers remain independent companies <a href="#source-5">[5]</a>.</li></ul><div class="lens-takeaway"><span>OUR INTERPRETATION · DEPENDENCY</span><p>Quality, supply continuity and brand reputation partly depend on partner performance.</p></div><button class="card-open" type="button" aria-label="Open global value chains in presentation view">Open this lens <span>↗</span></button></article>
 
-        <article class="lens-card lens-purple" data-slide="3"><div class="lens-top"><span class="lens-number">04</span><span class="lens-kicker">SPEAKER FOUR</span><span class="lens-icon">⌂</span></div><p class="lens-label">BUSINESS / POLICY / SOCIETY</p><h3>Political economy<br>&amp; institutions</h3><p class="lens-summary">Markets are shaped by public policy, environmental rules and community expectations.</p><ul><li>WHO reports at least 116 countries tax one or more categories of sugary drinks <a href="#source-6">[6]</a>.</li><li>Tax design, health priorities, water rules, wastewater controls and packaging regulation differ across countries <a href="#source-1">[1]</a> <a href="#source-6">[6]</a>.</li><li>Regulators, consumers, health groups, bottlers and local communities shape business conditions.</li></ul><div class="lens-takeaway"><span>EVALUATION</span><p>Long-term market access depends on legitimacy as well as commercial reach.</p></div><button class="card-open" type="button" aria-label="Open political economy in presentation view">Open this lens <span>↗</span></button></article>
+        <article class="lens-card lens-purple" data-slide="3"><div class="lens-top"><span class="lens-number">04</span><span class="lens-kicker">MODULE LENS</span><span class="lens-icon">⌂</span></div><p class="lens-label">BUSINESS / POLICY / SOCIETY</p><h3>Political economy<br>&amp; institutions</h3><p class="lens-summary">Markets are shaped by public policy, environmental rules and community expectations.</p><ul><li>WHO reports at least 116 countries tax one or more categories of sugary drinks <a href="#source-6">[6]</a>.</li><li>Tax design, health priorities, water rules, wastewater controls and packaging regulation differ across countries <a href="#source-1">[1]</a> <a href="#source-6">[6]</a>.</li><li>Regulators, consumers, health groups, bottlers and local communities shape business conditions <i class="group-note">(our interpretation)</i>.</li></ul><div class="lens-takeaway"><span>OUR INTERPRETATION · EVALUATION</span><p>Long-term market access depends on legitimacy as well as commercial reach.</p></div><button class="card-open" type="button" aria-label="Open political economy in presentation view">Open this lens <span>↗</span></button></article>
       </div>
     </section>
 
@@ -103,24 +125,27 @@
     </section>
 
     <section class="sources section-wrap" id="sources">
-      <div class="section-heading"><div><p class="eyebrow red-eyebrow">CHECK THE EVIDENCE</p><h2>Research &amp; <em>references.</em></h2></div><p>Company figures are labelled as company-reported. The other sources support the academic frameworks and policy discussion.</p></div>
+      <div class="section-heading"><div><p class="eyebrow red-eyebrow">CHECK THE EVIDENCE</p><h2>Research &amp; <em>references.</em></h2></div><p>Numbers in square brackets match the poster. Company figures come from Coca-Cola’s own disclosures; institutional and academic sources support the frameworks and policy discussion. Takeaways marked “our interpretation” are the group’s own analysis.</p></div>
       <ol class="source-list">
-        <li id="source-1"><span>[1]</span><div><strong>The Coca-Cola Company (2026).</strong> <i>2025 Form 10-K</i>, year ended 31 December 2025.<a href="https://investors.coca-colacompany.com/filings-reports/all-sec-filings/content/0001628280-26-010047/ko-20251231.htm" target="_blank" rel="noopener">Open official annual filing ↗</a></div></li>
-        <li id="source-2"><span>[2]</span><div><strong>The Coca-Cola Company.</strong> The Coca-Cola System.<a href="https://www.coca-colacompany.com/about-us/coca-cola-system" target="_blank" rel="noopener">Open company overview ↗</a></div></li>
-        <li id="source-3"><span>[3]</span><div><strong>OECD (2025).</strong> <i>Benchmark Definition of Foreign Direct Investment</i>, 5th ed.<a href="https://doi.org/10.1787/7f05c0a3-en" target="_blank" rel="noopener">Open publication ↗</a></div></li>
-        <li id="source-4"><span>[4]</span><div><strong>Dunning, J. H. (1988).</strong> The eclectic paradigm of international production. <i>Journal of International Business Studies, 19</i>, 1–31.<a href="https://doi.org/10.1057/palgrave.jibs.8490372" target="_blank" rel="noopener">Open article record ↗</a></div></li>
-        <li id="source-5"><span>[5]</span><div><strong>Gereffi, G., Humphrey, J. &amp; Sturgeon, T. (2005).</strong> The governance of global value chains. <i>Review of International Political Economy, 12</i>(1), 78–104.<a href="https://doi.org/10.1080/09692290500049805" target="_blank" rel="noopener">Open article record ↗</a></div></li>
-        <li id="source-6"><span>[6]</span><div><strong>World Health Organization (2026).</strong> <i>Global report on sugar-sweetened beverage taxes</i> (2025 edition); WHO news release, 13 January 2026.<a href="https://www.who.int/publications/i/item/9789240118942" target="_blank" rel="noopener">Open WHO report ↗</a> <a href="https://www.who.int/news/item/13-01-2026-cheaper-drinks-will-see-a-rise-in-noncommunicable-diseases-and-injuries" target="_blank" rel="noopener">WHO summary ↗</a></div></li>
-        <li id="source-7"><span>[7]</span><div><strong>UNEP (2023).</strong> <i>Turning off the Tap: How the world can end plastic pollution and create a circular economy.</i><a href="https://www.unep.org/resources/turning-off-tap-end-plastic-pollution-create-circular-economy" target="_blank" rel="noopener">Open report ↗</a></div></li>
-        <li id="source-8"><span>[8]</span><div><strong>Bartlett, C. A. &amp; Ghoshal, S. (1989).</strong> <i>Managing Across Borders: The Transnational Solution.</i> Harvard Business School Press.</div></li>
-      </ol>
+        <li class="source-group-label" aria-hidden="true">COMPANY DISCLOSURES · COMPANY-REPORTED FIGURES</li>
+        <li id="source-1"><span>[1]</span><div><span class="source-type tag-company">COMPANY</span><br><strong>The Coca-Cola Company (2026).</strong> <i>2025 Form 10-K</i>, year ended 31 December 2025.<br><a href="https://investors.coca-colacompany.com/filings-reports/all-sec-filings/content/0001628280-26-010047/ko-20251231.htm" target="_blank" rel="noopener">Open official annual filing ↗</a></div></li>
+        <li id="source-2"><span>[2]</span><div><span class="source-type tag-company">COMPANY</span><br><strong>The Coca-Cola Company.</strong> The Coca-Cola System.<br><a href="https://www.coca-colacompany.com/about-us/coca-cola-system" target="_blank" rel="noopener">Open company overview ↗</a></div></li>
+        <li class="source-group-label" aria-hidden="true">INDEPENDENT INSTITUTIONS</li>
+        <li id="source-3"><span>[3]</span><div><span class="source-type tag-independent">INSTITUTIONAL</span><br><strong>OECD (2025).</strong> <i>Benchmark Definition of Foreign Direct Investment</i>, 5th ed.<br><a href="https://doi.org/10.1787/7f05c0a3-en" target="_blank" rel="noopener">Open publication ↗</a></div></li>
+        <li id="source-6"><span>[6]</span><div><span class="source-type tag-independent">INSTITUTIONAL</span><br><strong>World Health Organization (2026).</strong> <i>Global report on the use of sugar-sweetened beverage taxes, 2025</i>; WHO news release, 13 January 2026.<br><a href="https://www.who.int/publications/i/item/9789240118942" target="_blank" rel="noopener">Open WHO report ↗</a> <a href="https://www.who.int/news/item/13-01-2026-cheaper-drinks-will-see-a-rise-in-noncommunicable-diseases-and-injuries" target="_blank" rel="noopener">WHO summary ↗</a></div></li>
+        <li id="source-7"><span>[7]</span><div><span class="source-type tag-independent">INSTITUTIONAL</span><br><strong>UNEP (2023).</strong> <i>Turning off the Tap: How the world can end plastic pollution and create a circular economy.</i><br><a href="https://www.unep.org/resources/turning-off-tap-end-plastic-pollution-create-circular-economy" target="_blank" rel="noopener">Open report ↗</a></div></li>
+        <li class="source-group-label" aria-hidden="true">ACADEMIC FRAMEWORKS</li>
+        <li id="source-4"><span>[4]</span><div><span class="source-type tag-independent">ACADEMIC</span><br><strong>Dunning, J. H. (1988).</strong> The eclectic paradigm of international production. <i>Journal of International Business Studies, 19</i>, 1–31.<br><a href="https://doi.org/10.1057/palgrave.jibs.8490372" target="_blank" rel="noopener">Open article record ↗</a></div></li>
+        <li id="source-5"><span>[5]</span><div><span class="source-type tag-independent">ACADEMIC</span><br><strong>Gereffi, G., Humphrey, J. &amp; Sturgeon, T. (2005).</strong> The governance of global value chains. <i>Review of International Political Economy, 12</i>(1), 78–104.<br><a href="https://doi.org/10.1080/09692290500049805" target="_blank" rel="noopener">Open article record ↗</a></div></li>
+        <li id="source-8"><span>[8]</span><div><span class="source-type tag-independent">ACADEMIC</span><br><strong>Bartlett, C. A. &amp; Ghoshal, S. (1989).</strong> <i>Managing Across Borders: The Transnational Solution.</i> Harvard Business School Press.</div></li>
+        </ol>
       <p class="academic-note">This is a student group presentation for BUSI-1763. It is an academic analysis, not an official Coca-Cola publication. Company claims and group interpretation are identified separately.</p>
     </section>
   </main>
 
   <footer class="footer"><a class="brand" href="#top"><span class="brand-mark">C</span><span>COCA-COLA <small>GLOBAL BUSINESS STRATEGY</small></span></a><span class="footer-credit">Website created by <strong>ZR Saimun</strong> · BUSI-1763 group presentation · © 2026</span><a href="#top">Back to top ↑</a></footer>
   <dialog id="deck" class="deck" aria-label="Four-lens presentation view"><div class="deck-shell"><div class="deck-bar"><span class="deck-brand"><i></i> COCA-COLA / BUSI-1763</span><button id="closeDeck" class="icon-button" aria-label="Close presentation view">×</button></div><div class="deck-progress"><span id="deckProgress"></span></div><div class="deck-content"><span id="deckKicker" class="eyebrow red-eyebrow"></span><h2 id="deckTitle"></h2><p id="deckBody" class="deck-body"></p><div id="deckPoints" class="deck-points"></div><div class="deck-takeaway"><span>KEY TAKEAWAY</span><p id="deckTakeaway"></p></div><div class="deck-sources" id="deckSources"></div></div><div class="deck-controls"><button id="deckPrev" class="button button-glass" type="button">← Previous</button><span id="deckCount">01 / 04</span><button id="deckNext" class="button button-red" type="button">Next →</button></div></div></dialog>
-  <script src="script.js" defer></script>
-  <script src="cinematic.js?v=2" defer></script>
+  <script src="script.js?v=4" defer></script>
+  <script src="cinematic.js?v=4" defer></script>
 </body>
 </html>

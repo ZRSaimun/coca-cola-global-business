@@ -6,4 +6,4 @@ A phone-friendly companion to our BUSI-1763 group mind map. Explore the A1 poste
 
 This is a student group project, not an official Coca-Cola publication.
 
-The presentation includes a ten-stage, scroll-controlled bottle journey from production inputs through local delivery and customer use.
+The presentation includes a seven-stage, scroll-controlled value-chain journey (raw materials and packaging → bottle production → preparation and filling → quality checks → local distribution → retail → customer). Without JavaScript, or with reduced motion turned on, the same stages appear as an illustrated list. Journey images are illustrative, not photographs of Coca-Cola facilities.
