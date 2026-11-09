@@ -156,3 +156,7 @@ a:focus-visible,button:focus-visible,[tabindex]:focus-visible{outline:2px solid 
  .network-visual::before{width:min(96%,440px)}
  .network-visual img{mask-image:radial-gradient(ellipse 82% 78% at 50% 48%,#000 48%,rgba(0,0,0,.96) 64%,rgba(0,0,0,.58) 82%,transparent 100%);-webkit-mask-image:radial-gradient(ellipse 82% 78% at 50% 48%,#000 48%,rgba(0,0,0,.96) 64%,rgba(0,0,0,.58) 82%,transparent 100%)}
 }
+
+/* Wider four-sided feather so no straight image edge is visible. */
+.network-visual img{mask-image:radial-gradient(ellipse 62% 62% at 50% 48%,#000 0%,#000 52%,rgba(0,0,0,.88) 61%,rgba(0,0,0,.52) 73%,rgba(0,0,0,.18) 86%,transparent 100%);-webkit-mask-image:radial-gradient(ellipse 62% 62% at 50% 48%,#000 0%,#000 52%,rgba(0,0,0,.88) 61%,rgba(0,0,0,.52) 73%,rgba(0,0,0,.18) 86%,transparent 100%)}
+@media(max-width:800px){.network-visual img{mask-image:radial-gradient(ellipse 62% 62% at 50% 48%,#000 0%,#000 52%,rgba(0,0,0,.88) 61%,rgba(0,0,0,.52) 73%,rgba(0,0,0,.18) 86%,transparent 100%);-webkit-mask-image:radial-gradient(ellipse 62% 62% at 50% 48%,#000 0%,#000 52%,rgba(0,0,0,.88) 61%,rgba(0,0,0,.52) 73%,rgba(0,0,0,.18) 86%,transparent 100%)}}
