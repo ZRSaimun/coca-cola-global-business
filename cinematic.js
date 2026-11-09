@@ -10,7 +10,7 @@
   // Small, dependency-free WebGL scene: a glass bottle in front of a connected globe.
   function startBottleScene() {
     const gl = canvas.getContext('webgl', { alpha: true, antialias: true, powerPreference: 'low-power' });
-    if (!gl || motionPreference.matches) { if (status) status.hidden = true; return; }
+    if (!gl || motionPreference.matches) { if (status) { status.hidden = true; status.style.display = 'none'; } return; }
 
     const vertexSource = `
       attribute vec3 aPosition;
@@ -67,7 +67,7 @@
       gl.attachShader(program, compile(gl.FRAGMENT_SHADER, fragmentSource));
       gl.linkProgram(program);
       if (!gl.getProgramParameter(program, gl.LINK_STATUS)) throw new Error(gl.getProgramInfoLog(program));
-    } catch (error) { if (status) status.hidden = true; return; }
+    } catch (error) { if (status) { status.hidden = true; status.style.display = 'none'; } return; }
 
     gl.useProgram(program);
     const loc = {
