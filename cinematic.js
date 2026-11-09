@@ -109,6 +109,18 @@
     ctx.globalAlpha = alpha;
     ctx.drawImage(img, x, y, dw, dh);
     ctx.globalAlpha = 1;
+
+    // Soft motion brings the still sequence to life without cropping the source.
+    const chapterT = (i % PER_CHAPTER) / PER_CHAPTER;
+    const scale = 1 + .012 * chapterT;
+    const shift = W * .006 * chapterT;
+    ctx.save();
+    ctx.globalAlpha = alpha * .16;
+    ctx.translate(W / 2, H / 2);
+    ctx.scale(scale, scale);
+    ctx.translate(-W / 2 + shift, -H / 2);
+    ctx.drawImage(img, x, y, dw, dh);
+    ctx.restore();
   }
 
   function render(pos) {
