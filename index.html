@@ -16,7 +16,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css?v=4">
-  <link rel="stylesheet" href="cinematic.css?v=4">
+  <link rel="stylesheet" href="cinematic.css?v=6">
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -48,38 +48,40 @@
       <div class="journey-intro section-wrap">
         <p class="eyebrow red-eyebrow">LENS 03 IN MOTION · GLOBAL VALUE CHAIN</p>
         <h2 id="journey-heading">Follow one bottle <em>from inputs to a customer.</em></h2>
-        <p>Six chapters show where different organisations add value in the Coca-Cola system: suppliers, the company’s brand and concentrate, local bottlers, retailers and customers <a href="#source-1">[1]</a> <a href="#source-2">[2]</a>. Scroll through the scenes, or use the arrow controls.</p>
+        <p>Six chapters show where different organisations add value in the Coca-Cola system: suppliers, the company’s brand and concentrate, local bottlers, retailers and customers <a href="#source-1">[1]</a> <a href="#source-2">[2]</a>. Scroll to play the scenes, or use the arrows and chapter markers.</p>
         <a class="journey-skip" href="#poster">Skip the journey <span>↓</span></a>
       </div>
 
       <div class="journey-scroll" id="journeyScroll">
         <div class="journey-sticky">
-          <div class="journey-photo" aria-hidden="true">
-            <canvas class="journey-frame-canvas" id="journeyFrameCanvas"></canvas>
-            <img class="journey-layer" src="assets/bottle-journey/frame-01.webp" alt="" decoding="async">
-            <div class="journey-shade"></div>
+          <div class="journey-screen" aria-hidden="true">
+            <canvas class="journey-canvas" id="journeyCanvas"></canvas>
           </div>
           <div class="journey-content">
-            <p class="journey-stage" id="journeyStage">01 / 06 · INGREDIENTS &amp; PREPARATION</p>
-            <h3 class="journey-title" id="journeyTitle">It begins with inputs from many suppliers.</h3>
-            <p class="journey-caption" id="journeyCaption">Ingredients and packaging materials enter the system from a wide supplier base.</p>
-            <p class="journey-actor" id="journeyActor">Who adds value: <b>suppliers</b></p>
-            <div class="journey-controls">
-              <button class="journey-control" id="journeyPrevBtn" type="button" aria-label="Previous stage">←</button>
-              <div class="journey-meter" id="journeyProgress" role="progressbar" aria-label="Bottle journey progress" aria-valuemin="1" aria-valuemax="6" aria-valuenow="1"><span id="journeyMeter"></span></div>
-              <button class="journey-control" id="journeyNextBtn" type="button" aria-label="Next stage">→</button>
+            <div class="journey-text">
+              <p class="journey-stage" id="journeyStage">01 / 06 · INGREDIENTS &amp; PREPARATION</p>
+              <h3 class="journey-title" id="journeyTitle">Many inputs begin to come together.</h3>
+            </div>
+            <div class="journey-side">
+              <p class="journey-caption" id="journeyCaption">Suppliers provide ingredients and packaging materials; preparation turns measured inputs into a beverage base.</p>
+              <p class="journey-actor" id="journeyActor">Who adds value here: <b>ingredient and packaging suppliers</b></p>
+              <div class="journey-controls">
+                <button class="journey-control" id="journeyPrevBtn" type="button" aria-label="Previous chapter">←</button>
+                <div class="journey-meter" id="journeyProgress" role="progressbar" aria-label="Bottle journey progress" aria-valuemin="1" aria-valuemax="6" aria-valuenow="1"><span id="journeyMeter"></span><div class="journey-ticks" id="journeyTicks"></div></div>
+                <button class="journey-control" id="journeyNextBtn" type="button" aria-label="Next chapter">→</button>
+              </div>
             </div>
           </div>
         </div>
       </div>
 
       <ol class="journey-steps section-wrap" id="journeySteps">
-        <li data-sequence="ingredients" data-actor="ingredient and packaging suppliers"><img src="assets/bottle-journey/sequence/ingredients-01.webp" alt="Illustrative storyboard: ingredients are measured and blended in a generic beverage preparation room" loading="lazy"><div><span class="step-no">01 · INGREDIENTS &amp; PREPARATION</span><h3>Many inputs begin to come together.</h3><p>Suppliers provide ingredients and packaging materials; preparation turns measured inputs into a beverage base.</p></div></li>
-        <li data-sequence="glass" data-actor="packaging suppliers"><img src="assets/bottle-journey/sequence/glass-01.webp" alt="Illustrative storyboard: a glass bottle is formed at a generic industrial moulding line" loading="lazy"><div><span class="step-no">02 · BOTTLE PRODUCTION</span><h3>Packaging takes shape.</h3><p>Glass packaging is formed, cooled and prepared for the filling line.</p></div></li>
-        <li data-sequence="fill" data-actor="the company (concentrate) and bottler"><img src="assets/bottle-journey/sequence/fill-01.webp" alt="Illustrative storyboard: a clear contour bottle is gradually filled on a generic bottling line" loading="lazy"><div><span class="step-no">03 · BEVERAGE PREPARATION &amp; FILLING</span><h3>Concentrate becomes a finished drink.</h3><p>The company makes concentrates and syrups; local bottlers mix them into finished drinks, then bottle and package them <a href="#source-2">[2]</a>.</p></div></li>
-        <li data-sequence="finish" data-actor="bottler, under company standards"><img src="assets/bottle-journey/sequence/finish-01.webp" alt="Illustrative storyboard: a bottle is capped, labelled and inspected" loading="lazy"><div><span class="step-no">04 · PACKAGING &amp; QUALITY</span><h3>Each bottle is finished and checked.</h3><p>Bottling contracts set product rules, so quality depends partly on partner performance <a href="#source-1">[1]</a> <a href="#source-5">[5]</a>.</p></div></li>
-        <li data-sequence="distribution" data-actor="local bottlers and retailers"><img src="assets/bottle-journey/sequence/distribution-01.webp" alt="Illustrative storyboard: a local delivery worker brings beverage crates to a neighborhood shop" loading="lazy"><div><span class="step-no">05 · LOCAL DISTRIBUTION</span><h3>Local partners move the product.</h3><p>Independent bottlers package and distribute drinks within their territories <a href="#source-1">[1]</a>.</p></div></li>
-        <li data-sequence="customer" data-actor="retailers and customers"><img src="assets/bottle-journey/sequence/customer-01.webp" alt="Illustrative storyboard: a café server presents a chilled bottle and a customer enjoys the drink" loading="lazy"><div><span class="step-no">06 · RETAIL &amp; CUSTOMER</span><h3>The journey reaches a local customer.</h3><p>Retail and food-service outlets connect a global brand with a local market.</p></div></li>
+        <li data-chapter="01-ingredients" data-kind="wide" data-actor="ingredient and packaging suppliers"><img src="assets/bottle-journey/film/01-ingredients-04.webp" alt="Illustration: a technician measures ingredients at a bench, then carries them to a stainless mixing tank" loading="lazy"><div><span class="step-no">01 · INGREDIENTS &amp; PREPARATION</span><h3>Many inputs begin to come together.</h3><p>Suppliers provide ingredients and packaging materials; preparation turns measured inputs into a beverage base.</p></div></li>
+        <li data-chapter="02-bottle" data-kind="square" data-actor="packaging suppliers"><img src="assets/bottle-journey/film/02-bottle-05.webp" alt="Illustration: a glowing glass bottle is formed inside a moulding machine while an operator watches" loading="lazy"><div><span class="step-no">02 · BOTTLE PRODUCTION</span><h3>Packaging takes shape.</h3><p>Glass packaging is formed, cooled and prepared for the filling line.</p></div></li>
+        <li data-chapter="03-fill" data-kind="square" data-actor="the company (concentrate) and bottler"><img src="assets/bottle-journey/film/03-fill-05.webp" alt="Illustration: cola pours into a clear contour bottle on a filling line" loading="lazy"><div><span class="step-no">03 · BEVERAGE PREPARATION &amp; FILLING</span><h3>Concentrate becomes a finished drink.</h3><p>The company makes concentrates and syrups; local bottlers mix them into finished drinks, then bottle and package them <a href="#source-2">[2]</a>.</p></div></li>
+        <li data-chapter="04-finish" data-kind="wide" data-actor="bottler, under company standards"><img src="assets/bottle-journey/film/04-finish-06.webp" alt="Illustration: a filled bottle is capped, then moves along the line to a labelling machine" loading="lazy"><div><span class="step-no">04 · CAPPING, LABELLING &amp; QUALITY</span><h3>Each bottle is sealed and labelled.</h3><p>Bottling contracts set product rules, so quality depends partly on partner performance <a href="#source-1">[1]</a> <a href="#source-5">[5]</a>.</p></div></li>
+        <li data-chapter="05-distribution" data-kind="wide" data-actor="local bottlers and retailers"><img src="assets/bottle-journey/film/05-distribution-03.webp" alt="Illustration: a delivery worker hands a red crate of bottles from a van to a smiling shopkeeper" loading="lazy"><div><span class="step-no">05 · LOCAL DISTRIBUTION</span><h3>Local partners move the product.</h3><p>Independent bottlers package and distribute drinks within their territories <a href="#source-1">[1]</a>.</p></div></li>
+        <li data-chapter="06-customer" data-kind="wide" data-actor="retailers and customers"><img src="assets/bottle-journey/film/06-customer-03.webp" alt="Illustration: a café server hands a chilled bottle to a customer at an outdoor table" loading="lazy"><div><span class="step-no">06 · RETAIL &amp; CUSTOMER</span><h3>The journey reaches a local customer.</h3><p>Retail and food-service outlets connect a global brand with a local market.</p></div></li>
       </ol>
       <p class="journey-note"><b>About these images:</b> illustrative visuals of a generic production and bottling network, not photographs of a real Coca-Cola facility. Processes vary by market and bottler. Unmarked captions are our summary; numbered links point to the evidence.</p>
     </section>
@@ -144,6 +146,6 @@
   <footer class="footer"><a class="brand" href="#top"><span class="brand-mark">C</span><span>COCA-COLA <small>GLOBAL BUSINESS STRATEGY</small></span></a><span class="footer-credit">Website created by <strong>ZR Saimun</strong> · BUSI-1763 group presentation · © 2026</span><a href="#top">Back to top ↑</a></footer>
   <dialog id="deck" class="deck" aria-label="Four-lens presentation view"><div class="deck-shell"><div class="deck-bar"><span class="deck-brand"><i></i> COCA-COLA / BUSI-1763</span><button id="closeDeck" class="icon-button" aria-label="Close presentation view">×</button></div><div class="deck-progress"><span id="deckProgress"></span></div><div class="deck-content"><span id="deckKicker" class="eyebrow red-eyebrow"></span><h2 id="deckTitle"></h2><p id="deckBody" class="deck-body"></p><div id="deckPoints" class="deck-points"></div><div class="deck-takeaway"><span>KEY TAKEAWAY</span><p id="deckTakeaway"></p></div><div class="deck-sources" id="deckSources"></div></div><div class="deck-controls"><button id="deckPrev" class="button button-glass" type="button">← Previous</button><span id="deckCount">01 / 04</span><button id="deckNext" class="button button-red" type="button">Next →</button></div></div></dialog>
   <script src="script.js?v=4" defer></script>
-  <script src="cinematic.js?v=4" defer></script>
+  <script src="cinematic.js?v=6" defer></script>
 </body>
 </html>
