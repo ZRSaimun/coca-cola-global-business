@@ -122,20 +122,11 @@
 
     const a = nearestReady(i);
     if (a < 0) return;
-    const b = ready(j) ? j : a;
-
-    // Dissolve: each frame holds briefly, then blends into the next.
-    const mix = b === a ? 0 : smooth(.22, .78, t);
-    // Camera: focus point eases continuously between frames; a gentle push-in
-    // runs across each chapter so the picture never sits still.
-    const fx = lerp(frames[a].fx, frames[b].fx, smooth(0, 1, t));
-    const chapterT = (pos % PER_CHAPTER) / PER_CHAPTER;
-    const push = 1.02 + .06 * chapterT;
-
+    // Hold a single complete frame at a time. This keeps the storyboard clear
+    // while the eased playhead advances one frame after another on scroll.
     ctx.fillStyle = BG;
     ctx.fillRect(0, 0, W, H);
     drawFrame(a, 1);
-    if (mix > 0) drawFrame(b, mix);
 
     // Soft vignette so the scene reads as one continuous shot.
     const v = ctx.createRadialGradient(W / 2, H / 2, Math.min(W, H) * .35, W / 2, H / 2, Math.max(W, H) * .75);
