@@ -1,0 +1,30 @@
+const lensData = [
+  { kicker: '01 / GLOBALISATION & LOCAL ADAPTATION', title: 'Global scale. Local response.', body: 'Coca-Cola’s international reach depends on a combination of shared global assets and locally operated bottling and distribution.', points: ['Products are sold in more than 200 countries and territories, with about 2.2 billion servings a day [1].', 'Brands, concentrates, product standards and marketing support connect markets [1].', 'Independent bottlers mix, package and distribute drinks in their territories [1, 2].', 'The integration–responsiveness lens helps explain the balance: shared standards support consistency while tastes, prices, language and rules differ across markets [8].'], takeaway: 'Local partners extend the system’s reach, while making coordination a strategic risk.', sources: '[1] Company 2025 Form 10-K · [2] Coca-Cola System · [8] Bartlett & Ghoshal' },
+  { kicker: '02 / FOREIGN DIRECT INVESTMENT', title: 'Where does Coca-Cola own or control?', body: 'The system is neither entirely owned nor entirely outsourced. The useful question is where ownership, contracts and partner relationships give the company influence.', points: ['A bottling contract alone is not FDI. FDI involves a lasting cross-border investment relationship and influence [3].', 'Most branded drinks are handled by independent bottlers that are separate companies [1].', 'Coca-Cola has consolidated operations and may take control of underperforming bottlers, then later refranchise them [1].', 'The OLI lens: brand and concentrates (ownership), local market access (location), and choosing contracts or ownership (internalisation) [1, 4].'], takeaway: 'Ownership can increase control but needs capital and management attention. Partners add local capability.', sources: '[1] Company 2025 Form 10-K · [3] OECD FDI Benchmark · [4] Dunning' },
+  { kicker: '03 / GLOBAL VALUE CHAINS & NETWORKS', title: 'From inputs to the customer.', body: 'Different organisations contribute different stages of value creation, connected through territory agreements and operating standards.', points: ['Suppliers provide ingredients and packaging; Coca-Cola provides brands and concentrates; bottlers contribute production and distribution [1, 2].', 'The five largest independent bottlers handled 44% of 2025 worldwide unit case volume [1].', 'Territory contracts set rights and product rules while bottlers remain independent companies [1, 5].', 'Local production and distribution connect global products with local customers. Quality and supply continuity depend partly on partner performance [1].'], takeaway: 'The network extends reach, but creates interdependence: partner performance can affect quality, continuity and brand reputation.', sources: '[1] Company 2025 Form 10-K · [2] Coca-Cola System · [5] Gereffi et al.' },
+  { kicker: '04 / POLITICAL ECONOMY & INSTITUTIONS', title: 'Business, policy and society.', body: 'Coca-Cola’s local operating environment is shaped by the expectations of governments, customers, health groups, bottlers and communities.', points: ['WHO reports at least 116 countries tax one or more categories of sugary drinks [6].', 'Tax design and public health priorities vary across countries [6].', 'Water rules, wastewater controls and packaging regulation can affect production and distribution [1].', 'Potential responses include responsible marketing, clear product information, water stewardship and packaging systems that support reuse and recycling [1, 7].'], takeaway: 'Long-term market access depends on legitimacy as well as commercial reach.', sources: '[1] Company 2025 Form 10-K · [6] WHO · [7] UNEP' }
+];
+const deck = document.querySelector('#deck');
+let activeSlide = 0;
+function renderSlide() {
+  const s = lensData[activeSlide];
+  document.querySelector('#deckKicker').textContent = s.kicker;
+  document.querySelector('#deckTitle').textContent = s.title;
+  document.querySelector('#deckBody').textContent = s.body;
+  document.querySelector('#deckPoints').innerHTML = s.points.map(p => `<div class="deck-point">${p.replace(/\[(\d+)\]/g, '<a href="#source-$1" data-source="$1">[$1]</a>')}</div>`).join('');
+  document.querySelector('#deckTakeaway').textContent = s.takeaway;
+  document.querySelector('#deckSources').textContent = s.sources;
+  document.querySelector('#deckCount').textContent = `${String(activeSlide + 1).padStart(2, '0')} / 04`;
+  document.querySelector('#deckProgress').style.width = `${(activeSlide + 1) * 25}%`;
+  document.querySelector('#deckPrev').disabled = activeSlide === 0;
+  document.querySelector('#deckNext').textContent = activeSlide === lensData.length - 1 ? 'Finish ✓' : 'Next →';
+}
+function openSlide(index = 0) { activeSlide = index; renderSlide(); deck.showModal(); }
+document.querySelector('#openDeck').addEventListener('click', () => openSlide(0));
+document.querySelectorAll('.card-open').forEach(button => button.addEventListener('click', () => openSlide(Number(button.closest('.lens-card').dataset.slide))));
+document.querySelectorAll('.lens-card').forEach(card => card.addEventListener('dblclick', () => openSlide(Number(card.dataset.slide))));
+document.querySelector('#closeDeck').addEventListener('click', () => deck.close());
+document.querySelector('#deckPrev').addEventListener('click', () => { if (activeSlide > 0) { activeSlide--; renderSlide(); } });
+document.querySelector('#deckNext').addEventListener('click', () => { if (activeSlide < lensData.length - 1) { activeSlide++; renderSlide(); } else deck.close(); });
+document.addEventListener('keydown', event => { if (!deck.open) return; if (event.key === 'ArrowRight' && activeSlide < lensData.length - 1) { activeSlide++; renderSlide(); } if (event.key === 'ArrowLeft' && activeSlide > 0) { activeSlide--; renderSlide(); } });
+document.querySelector('#deckPoints').addEventListener('click', event => { const link = event.target.closest('a[data-source]'); if (!link) return; deck.close(); setTimeout(() => document.querySelector(`#source-${link.dataset.source}`)?.scrollIntoView({behavior:'smooth', block:'center'}), 150); });
