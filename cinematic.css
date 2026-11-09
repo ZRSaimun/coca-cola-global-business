@@ -1,0 +1,48 @@
+/* Cinematic opening and motion polish for the BUSI-1763 companion site. */
+.hero-art{background:linear-gradient(90deg,#101820 0%,rgba(16,24,32,.58) 38%,rgba(16,24,32,.04) 100%),linear-gradient(0deg,#101820 0%,transparent 28%);opacity:1;transform:none;animation:none}
+.hero-fallback{position:absolute;inset:5% 0 2% auto;width:70%;height:93%;object-fit:contain;object-position:center right;opacity:.6;filter:drop-shadow(0 28px 55px rgba(0,0,0,.44));mask-image:linear-gradient(90deg,transparent 0%,#000 18%,#000 92%,transparent 100%);transition:opacity .8s ease;z-index:0}
+.hero-webgl{position:absolute;right:-3%;top:0;width:min(76%,1100px);height:100%;z-index:1;pointer-events:none;opacity:0;transition:opacity 1s ease;filter:drop-shadow(0 25px 40px rgba(0,0,0,.3))}
+.hero.webgl-ready .hero-webgl{opacity:1}
+.hero.webgl-ready .hero-fallback{opacity:.045}
+.hero-webgl-status{position:absolute;z-index:3;right:clamp(24px,7vw,110px);bottom:82px;display:flex;align-items:center;gap:9px;padding:8px 11px;border:1px solid rgba(255,255,255,.19);background:rgba(13,20,27,.52);backdrop-filter:blur(10px);font-size:8px;letter-spacing:.16em;color:#d8dcdd}
+.hero-webgl-status i{width:6px;height:6px;border-radius:50%;background:#e51d3f;box-shadow:0 0 12px #e51d3f;animation:signal 2s ease-in-out infinite}
+.hero-copy{z-index:2;animation:copyLift .8s cubic-bezier(.2,.7,.25,1) both}
+.hero h1{ text-wrap:balance }
+.hero .hero-note{letter-spacing:.025em}
+.hero-stamp{z-index:3}
+.hero-bottomline{z-index:3}
+.hero .hero-actions .button{box-shadow:0 10px 35px rgba(0,0,0,.18)}
+.hero .hero-actions .button-red{box-shadow:0 9px 32px rgba(229,29,63,.23)}
+.section-heading h2,.network-copy h2{ text-wrap:balance }
+.poster-frame{transform:translateZ(0);transition:box-shadow .45s ease,border-color .45s ease}
+.poster-frame:hover{box-shadow:0 42px 110px rgba(0,0,0,.42);border-color:rgba(255,255,255,.3)}
+.lens-card{transform:translateZ(0)}
+.lens-card::before{content:"";position:absolute;inset:0 auto 0 0;width:2px;background:var(--accent);opacity:.55;transform:scaleY(.18);transform-origin:top;transition:transform .4s ease}
+.lens-card:hover::before{transform:scaleY(1)}
+.footer-credit{font-size:10px;color:#d4d8d9;letter-spacing:.025em}
+.footer-credit strong{color:white;font-weight:700}
+.motion-ready .reveal-on-scroll{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.7,.25,1)}
+.motion-ready .reveal-on-scroll.is-visible{opacity:1;transform:translateY(0)}
+@keyframes signal{50%{opacity:.36;box-shadow:0 0 3px #e51d3f}}
+@keyframes copyLift{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:800px){
+ .hero-fallback{inset:12% -9% 0 auto;width:96%;height:78%;object-position:center right;opacity:.48;mask-image:linear-gradient(90deg,transparent 2%,#000 25%,#000 95%,transparent 100%)}
+ .hero-webgl{right:-22%;top:9%;width:112%;height:75%;opacity:0}
+ .hero.webgl-ready .hero-fallback{opacity:.025}
+ .hero-webgl-status{right:24px;bottom:65px}
+ .hero-copy{max-width:620px}
+}
+@media(max-width:430px){
+ .hero-webgl{right:-35%;top:11%;width:132%;height:70%}
+ .hero-fallback{right:-18%;width:112%;height:73%;top:15%}
+ .hero-webgl-status{right:18px;bottom:62px;font-size:7px}
+ .hero-stamp{opacity:.62}
+ .footer-credit{font-size:9px}
+}
+@media(prefers-reduced-motion:reduce){
+ .hero-copy{animation:none}
+ .hero-webgl-status i{animation:none}
+ .hero-webgl{display:none}
+ .hero.webgl-ready .hero-fallback{opacity:.5}
+ .motion-ready .reveal-on-scroll{opacity:1;transform:none}
+}
