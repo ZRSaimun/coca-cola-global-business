@@ -31,7 +31,7 @@
   const pictures = frames.map(src => { const img = new Image(); img.src = src; return img; });
   const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
   const ease = t => t * t * (3 - 2 * t);
-  let enabled = false, raf = 0, activeStage = -1, paintedFrame = -1, canvasWidth = 0, canvasHeight = 0;
+  let enabled = false, raf = 0, activeStage = -1, paintedFrame = '', canvasWidth = 0, canvasHeight = 0, shownFraction = 0, targetFraction = 0;
   const ctx = canvas?.getContext('2d', {alpha:false, desynchronized:true});
 
   function scrollRange() {
@@ -56,18 +56,42 @@
     ctx.drawImage(img, x + (w - dw) / 2, y + (h - dh) / 2, dw, dh);
   }
 
-  function paintFrame(index) {
-    if (!ctx || index === paintedFrame || !pictures[index]?.complete || !pictures[index].naturalWidth) return;
-    const img = pictures[index], w = canvasWidth, h = canvasHeight;
-    // A soft, enlarged continuation of the same shot fills the widescreen edges.
-    ctx.save(); ctx.filter = 'blur(24px) brightness(.48) saturate(.85)';
-    drawCover(img, -28, -28, w + 56, h + 56); ctx.restore();
-    // The sharp storyboard frame remains undistorted; its own action is the focus.
-    const side = Math.min(h * .94, w * .94);
-    const x = w > 780 ? clamp(w * .66 - side / 2, 0, w - side) : (w - side) / 2;
-    const y = (h - side) / 2;
-    ctx.drawImage(img, x, y, side, side);
-    paintedFrame = index;
+  function drawContained(img, alpha = 1) {
+    const w = canvasWidth, h = canvasHeight;
+    const mobile = w <= 780;
+    const maxW = mobile ? w * .96 : w * .70;
+    const maxH = mobile ? h * .58 : h * .90;
+    const scale = Math.min(maxW / img.naturalWidth, maxH / img.naturalHeight);
+    const dw = img.naturalWidth * scale, dh = img.naturalHeight * scale;
+    const x = mobile ? (w - dw) / 2 : clamp(w * .67 - dw / 2, w * .29, w - dw);
+    const y = mobile ? Math.max(12, h * .035) : (h - dh) / 2;
+    ctx.globalAlpha = alpha;
+    ctx.drawImage(img, x, y, dw, dh);
+    ctx.globalAlpha = 1;
+  }
+
+  function paintFrame(position) {
+    if (!ctx || !pictures.length) return;
+    const lower = clamp(Math.floor(position), 0, pictures.length - 1);
+    const upper = Math.min(pictures.length - 1, lower + 1);
+    const mix = position - lower;
+    const first = pictures[lower]?.complete && pictures[lower].naturalWidth ? pictures[lower] : null;
+    const second = pictures[upper]?.complete && pictures[upper].naturalWidth ? pictures[upper] : null;
+    if (!first && !second) return;
+    const signature = `${lower}:${upper}:${mix.toFixed(3)}`;
+    if (signature === paintedFrame) return;
+    const base = first || second;
+    const w = canvasWidth, h = canvasHeight;
+    ctx.fillStyle = '#080d11';
+    ctx.fillRect(0, 0, w, h);
+    ctx.save();
+    ctx.filter = 'blur(28px) brightness(.42) saturate(.8)';
+    drawCover(base, -32, -32, w + 64, h + 64);
+    ctx.restore();
+    drawContained(base, second && first ? 1 - mix : 1);
+    if (second && first && upper !== lower) drawContained(second, mix);
+    else if (second && !first) drawContained(second, 1);
+    paintedFrame = signature;
   }
 
   function setStage(index) {
@@ -87,13 +111,15 @@
   function paint() {
     raf = 0;
     if (!enabled) return;
-    const {fraction} = scrollRange();
-    const raw = fraction * (frames.length - 1);
-    const frame = clamp(Math.round(raw), 0, frames.length - 1);
-    const stage = Math.min(stages.length - 1, Math.floor(frame / FRAME_COUNT));
-    paintFrame(frame);
-    meter.style.transform = `scaleX(${fraction.toFixed(4)})`;
+    targetFraction = scrollRange().fraction;
+    shownFraction += (targetFraction - shownFraction) * .24;
+    if (Math.abs(targetFraction - shownFraction) < .0008) shownFraction = targetFraction;
+    const position = shownFraction * (frames.length - 1);
+    const stage = Math.min(stages.length - 1, Math.floor(position / FRAME_COUNT));
+    paintFrame(position);
+    meter.style.transform = `scaleX(${targetFraction.toFixed(4)})`;
     setStage(stage);
+    if (shownFraction !== targetFraction) requestPaint();
   }
   const requestPaint = () => { if (!raf) raf = requestAnimationFrame(paint); };
 
@@ -106,7 +132,7 @@
 
   function enable() {
     if (enabled) return;
-    enabled = true; root.classList.add('journey-enhanced'); setCanvasSize(); requestPaint();
+    enabled = true; root.classList.add('journey-enhanced'); setCanvasSize(); shownFraction = targetFraction = scrollRange().fraction; requestPaint();
   }
   function disable() {
     enabled = false; root.classList.remove('journey-enhanced');
