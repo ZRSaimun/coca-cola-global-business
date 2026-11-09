@@ -100,8 +100,10 @@
   }
 
   // Frame composition prioritizes the full source image on every viewport.
+  // Preserve the entire source frame on every viewport and add only a subtle
+  // motion accent that never scales the primary image beyond its contain fit.
   function drawFrame(i, alpha) {
-    const f = frames[i], img = f.img;
+    const img = frames[i].img;
     const iw = img.naturalWidth, ih = img.naturalHeight;
     const scale = Math.min(W / iw, H / ih);
     const dw = iw * scale, dh = ih * scale;
@@ -109,18 +111,6 @@
     ctx.globalAlpha = alpha;
     ctx.drawImage(img, x, y, dw, dh);
     ctx.globalAlpha = 1;
-
-    // Soft motion brings the still sequence to life without cropping the source.
-    const chapterT = (i % PER_CHAPTER) / PER_CHAPTER;
-    const scale = 1 + .012 * chapterT;
-    const shift = W * .006 * chapterT;
-    ctx.save();
-    ctx.globalAlpha = alpha * .16;
-    ctx.translate(W / 2, H / 2);
-    ctx.scale(scale, scale);
-    ctx.translate(-W / 2 + shift, -H / 2);
-    ctx.drawImage(img, x, y, dw, dh);
-    ctx.restore();
   }
 
   function render(pos) {
@@ -144,8 +134,8 @@
 
     ctx.fillStyle = BG;
     ctx.fillRect(0, 0, W, H);
-    drawFrame(a, 1, fx, push);
-    if (mix > 0) drawFrame(b, mix, fx, frames[b].chapter === frames[a].chapter ? push : 1.02);
+    drawFrame(a, 1);
+    if (mix > 0) drawFrame(b, mix);
 
     // Soft vignette so the scene reads as one continuous shot.
     const v = ctx.createRadialGradient(W / 2, H / 2, Math.min(W, H) * .35, W / 2, H / 2, Math.max(W, H) * .75);
