@@ -4,8 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#101820">
-  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg?v=1">
-    <meta name="description" content="A phone-friendly companion to our BUSI-1763 group mind map on Coca-Cola’s global business strategy, international production network and local adaptation.">
+  <meta name="description" content="A phone-friendly companion to our BUSI-1763 group mind map on Coca-Cola’s global business strategy, international production network and local adaptation.">
   <title>Coca-Cola | Global Business Strategy</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,16 +16,14 @@
   <div class="grain" aria-hidden="true"></div>
   <header class="topbar">
     <a class="brand" href="#top" aria-label="Coca-Cola global business presentation home"><span class="brand-mark">C</span><span>BUSI<span class="brand-dash">—</span>1763 <small>GROUP MIND MAP</small></span></a>
-    <nav aria-label="Main navigation"><a href="#poster">Poster</a><a href="#framework">Four lenses</a><a href="#sources">Sources</a></nav>
+    <nav aria-label="Main navigation"><a href="#journey">Bottle journey</a><a href="#poster">Poster</a><a href="#framework">Four lenses</a><a href="#sources">Sources</a></nav>
     <a class="top-cta" href="#framework">Explore the research <span>↘</span></a>
   </header>
 
   <main id="top">
     <section class="hero" aria-labelledby="hero-title">
       <div class="hero-art" aria-hidden="true"></div>
-      <img class="hero-fallback" src="assets/coca-cola-global-network.webp" alt="" aria-hidden="true">
-      <canvas class="hero-webgl" id="heroWebgl" aria-hidden="true"></canvas>
-      <div class="hero-webgl-status" aria-hidden="true"><i></i><span>GLOBAL NETWORK · LIVE 3D</span></div>
+      <img class="hero-fallback" src="assets/bottle-journey/frame-10.webp" alt="A local café server hands a chilled contour glass bottle to a customer" fetchpriority="high">
       <div class="hero-glow" aria-hidden="true"></div>
       <div class="hero-copy">
         <p class="eyebrow"><i></i> DYNAMICS OF GLOBAL BUSINESS AND PRACTICES</p>
@@ -37,6 +34,34 @@
       </div>
       <div class="hero-stamp"><span>GLOBAL<br>REACH</span><b>×</b><span>LOCAL<br>DELIVERY</span></div>
       <div class="hero-bottomline"><span>GLOBAL BUSINESS STRATEGY</span><span>01 / 04 MODULE LENSES</span></div>
+    </section>
+
+    <section class="bottle-journey" id="journey" aria-labelledby="journey-title">
+      <div class="journey-scroll" id="journeyScroll">
+        <div class="journey-sticky">
+          <div class="journey-photo" aria-hidden="true">
+            <img id="journeyCurrent" src="assets/bottle-journey/frame-01.webp" alt="" fetchpriority="high">
+            <img id="journeyNext" src="assets/bottle-journey/frame-02.webp" alt="">
+            <div class="journey-shade"></div>
+          </div>
+          <div class="journey-content">
+            <p class="journey-eyebrow"><span></span> GLOBAL VALUE CHAIN · 10 STAGES</p>
+            <p class="journey-stage" id="journeyStage">01 / 10 · INPUTS</p>
+            <h2 id="journey-title">From raw materials to a local customer.</h2>
+            <p class="journey-caption" id="journeyCaption">Scroll to follow a bottle through the production and delivery network.</p>
+            <div class="journey-controls">
+              <button class="journey-control" id="journeyPrev" type="button" aria-label="Go to the previous stage">←</button>
+              <div class="journey-meter" role="progressbar" aria-label="Bottle journey progress" aria-valuemin="1" aria-valuemax="10" aria-valuenow="1">
+                <span id="journeyMeter"></span>
+              </div>
+              <button class="journey-control" id="journeyNext" type="button" aria-label="Go to the next stage">→</button>
+            </div>
+            <p class="journey-hint">SCROLL TO MOVE THROUGH THE STORY <span>·</span> REVERSE SCROLL TO GO BACK</p>
+          </div>
+          <div class="journey-counter" id="journeyCounter" aria-hidden="true">01 <span>/</span> 10</div>
+        </div>
+      </div>
+      <p class="journey-note">Illustrative sequence of a global production and bottling network. It does not depict a specific Coca-Cola facility; processes vary by market.</p>
     </section>
 
     <section class="stats section-wrap" aria-label="Company reported figures">
