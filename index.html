@@ -55,33 +55,31 @@
       <div class="journey-scroll" id="journeyScroll">
         <div class="journey-sticky">
           <div class="journey-photo" aria-hidden="true">
-            <img class="journey-layer" id="journeyLayerA" src="assets/bottle-journey/frame-01.webp" alt="" decoding="async">
-            <img class="journey-layer" id="journeyLayerB" src="assets/bottle-journey/frame-02.webp" alt="" decoding="async">
+            <canvas class="journey-frame-canvas" id="journeyFrameCanvas"></canvas>
+            <img class="journey-layer" src="assets/bottle-journey/frame-01.webp" alt="" decoding="async">
             <div class="journey-shade"></div>
           </div>
           <div class="journey-content">
-            <p class="journey-stage" id="journeyStage">01 / 07 · RAW MATERIALS &amp; PACKAGING</p>
+            <p class="journey-stage" id="journeyStage">01 / 06 · INGREDIENTS &amp; PREPARATION</p>
             <h3 class="journey-title" id="journeyTitle">It begins with inputs from many suppliers.</h3>
             <p class="journey-caption" id="journeyCaption">Ingredients and packaging materials enter the system from a wide supplier base.</p>
             <p class="journey-actor" id="journeyActor">Who adds value: <b>suppliers</b></p>
             <div class="journey-controls">
               <button class="journey-control" id="journeyPrevBtn" type="button" aria-label="Previous stage">←</button>
-              <div class="journey-meter" id="journeyProgress" role="progressbar" aria-label="Bottle journey progress" aria-valuemin="1" aria-valuemax="7" aria-valuenow="1"><span id="journeyMeter"></span></div>
+              <div class="journey-meter" id="journeyProgress" role="progressbar" aria-label="Bottle journey progress" aria-valuemin="1" aria-valuemax="6" aria-valuenow="1"><span id="journeyMeter"></span></div>
               <button class="journey-control" id="journeyNextBtn" type="button" aria-label="Next stage">→</button>
             </div>
           </div>
-          <nav class="journey-rail" aria-label="Jump to a stage of the bottle journey" id="journeyRail"></nav>
         </div>
       </div>
 
       <ol class="journey-steps section-wrap" id="journeySteps">
-        <li data-frame="01" data-actor="suppliers"><img src="assets/bottle-journey/frame-01.webp" alt="Illustration: a technician checks trays of raw materials beside a furnace, with trucks and a container port behind" loading="lazy"><div><span class="step-no">01 · RAW MATERIALS &amp; PACKAGING</span><h3>It begins with inputs from many suppliers.</h3><p>Ingredients and packaging materials enter the system from a wide supplier base.</p></div></li>
-        <li data-frame="02" data-actor="packaging suppliers"><img src="assets/bottle-journey/frame-02.webp" alt="Illustration: glowing glass bottles being formed inside a moulding machine" loading="lazy"><div><span class="step-no">02 · BOTTLE PRODUCTION</span><h3>Packaging takes shape.</h3><p>Containers such as the contour glass bottle are produced before they reach the filling line.</p></div></li>
-        <li data-frame="05" data-actor="the company (concentrate) and bottler"><img src="assets/bottle-journey/frame-05.webp" alt="Illustration: cola begins to pour into an empty glass bottle on a filling line" loading="lazy"><div><span class="step-no">03 · BEVERAGE PREPARATION &amp; FILLING</span><h3>Concentrate becomes a finished drink.</h3><p>The company makes concentrates and syrups; local bottlers mix them into finished drinks, then bottle and package them <a href="#source-2">[2]</a>.</p></div></li>
-        <li data-frame="06" data-actor="bottler, under company standards"><img src="assets/bottle-journey/frame-06.webp" alt="Illustration: a filled bottle stands under the filling nozzle beside a row of empty bottles" loading="lazy"><div><span class="step-no">04 · QUALITY CHECKS</span><h3>The fill is checked against standards.</h3><p>Bottling contracts set product rules, so quality depends partly on partner performance <a href="#source-1">[1]</a> <a href="#source-5">[5]</a>.</p></div></li>
-        <li data-frame="09" data-actor="local bottler"><img src="assets/bottle-journey/frame-09.webp" alt="Illustration: a delivery worker hands a red crate of bottles to a shopkeeper outside a small store" loading="lazy"><div><span class="step-no">05 · BOTTLING &amp; LOCAL DISTRIBUTION</span><h3>A local partner moves the product.</h3><p>Independent bottlers package and distribute drinks within their territories <a href="#source-1">[1]</a>.</p></div></li>
-        <li data-frame="09" data-actor="retailers"><img src="assets/bottle-journey/frame-09.webp" alt="Illustration: the shopkeeper holds a bottle of cola at the shop entrance" loading="lazy"><div><span class="step-no">06 · RETAIL &amp; CAFÉ</span><h3>Shops and cafés make the sale.</h3><p>Retail and food-service outlets connect a global brand with a local market.</p></div></li>
-        <li data-frame="10" data-actor="customers"><img src="assets/bottle-journey/frame-10.webp" alt="Illustration: a café server hands a chilled bottle to a customer at an outdoor table" loading="lazy"><div><span class="step-no">07 · CUSTOMER</span><h3>The journey ends with a local customer.</h3><p>One global brand, delivered through many local businesses.</p></div></li>
+        <li data-sequence="ingredients" data-actor="ingredient and packaging suppliers"><img src="assets/bottle-journey/sequence/ingredients-01.webp" alt="Illustrative storyboard: ingredients are measured and blended in a generic beverage preparation room" loading="lazy"><div><span class="step-no">01 · INGREDIENTS &amp; PREPARATION</span><h3>Many inputs begin to come together.</h3><p>Suppliers provide ingredients and packaging materials; preparation turns measured inputs into a beverage base.</p></div></li>
+        <li data-sequence="glass" data-actor="packaging suppliers"><img src="assets/bottle-journey/sequence/glass-01.webp" alt="Illustrative storyboard: a glass bottle is formed at a generic industrial moulding line" loading="lazy"><div><span class="step-no">02 · BOTTLE PRODUCTION</span><h3>Packaging takes shape.</h3><p>Glass packaging is formed, cooled and prepared for the filling line.</p></div></li>
+        <li data-sequence="fill" data-actor="the company (concentrate) and bottler"><img src="assets/bottle-journey/sequence/fill-01.webp" alt="Illustrative storyboard: a clear contour bottle is gradually filled on a generic bottling line" loading="lazy"><div><span class="step-no">03 · BEVERAGE PREPARATION &amp; FILLING</span><h3>Concentrate becomes a finished drink.</h3><p>The company makes concentrates and syrups; local bottlers mix them into finished drinks, then bottle and package them <a href="#source-2">[2]</a>.</p></div></li>
+        <li data-sequence="finish" data-actor="bottler, under company standards"><img src="assets/bottle-journey/sequence/finish-01.webp" alt="Illustrative storyboard: a bottle is capped, labelled and inspected" loading="lazy"><div><span class="step-no">04 · PACKAGING &amp; QUALITY</span><h3>Each bottle is finished and checked.</h3><p>Bottling contracts set product rules, so quality depends partly on partner performance <a href="#source-1">[1]</a> <a href="#source-5">[5]</a>.</p></div></li>
+        <li data-sequence="distribution" data-actor="local bottlers and retailers"><img src="assets/bottle-journey/sequence/distribution-01.webp" alt="Illustrative storyboard: a local delivery worker brings beverage crates to a neighborhood shop" loading="lazy"><div><span class="step-no">05 · LOCAL DISTRIBUTION</span><h3>Local partners move the product.</h3><p>Independent bottlers package and distribute drinks within their territories <a href="#source-1">[1]</a>.</p></div></li>
+        <li data-sequence="customer" data-actor="retailers and customers"><img src="assets/bottle-journey/sequence/customer-01.webp" alt="Illustrative storyboard: a café server presents a chilled bottle and a customer enjoys the drink" loading="lazy"><div><span class="step-no">06 · RETAIL &amp; CUSTOMER</span><h3>The journey reaches a local customer.</h3><p>Retail and food-service outlets connect a global brand with a local market.</p></div></li>
       </ol>
       <p class="journey-note"><b>About these images:</b> illustrative visuals of a generic production and bottling network, not photographs of a real Coca-Cola facility. Processes vary by market and bottler. Unmarked captions are our summary; numbered links point to the evidence.</p>
     </section>
