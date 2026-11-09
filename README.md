@@ -5,3 +5,5 @@ A phone-friendly companion to our BUSI-1763 group mind map. Explore the A1 poste
 **Live presentation:** https://zrsaimun.github.io/coca-cola-global-business/
 
 This is a student group project, not an official Coca-Cola publication.
+
+The presentation includes a ten-stage, scroll-controlled bottle journey from production inputs through local delivery and customer use.
