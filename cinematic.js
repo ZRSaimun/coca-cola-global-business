@@ -67,7 +67,7 @@
       gl.attachShader(program, compile(gl.FRAGMENT_SHADER, fragmentSource));
       gl.linkProgram(program);
       if (!gl.getProgramParameter(program, gl.LINK_STATUS)) throw new Error(gl.getProgramInfoLog(program));
-    } catch (error) { if (status) status.hidden = true; return; }
+    } catch (error) { canvas.setAttribute('data-scene-error',String(error.message||error)); if (status) status.hidden = true; return; }
 
     gl.useProgram(program);
     const loc = {
