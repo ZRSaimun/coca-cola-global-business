@@ -142,3 +142,17 @@ a:focus-visible,button:focus-visible,[tabindex]:focus-visible{outline:2px solid 
  .journey-content{max-height:calc(100svh - 24px);overflow:auto}
  .journey-steps img{max-height:62svh}
 }
+
+
+/* Blend the square network artwork into the page while keeping the bottle and
+   worldwide orbit artwork unchanged. The soft radial mask feathers only its
+   dark outer field into the surrounding blue background. */
+.network-visual{isolation:isolate}
+.network-visual::before{content:"";position:absolute;z-index:1;left:50%;top:50%;width:min(94%,520px);aspect-ratio:1;transform:translate(-50%,-50%);border-radius:50%;background:radial-gradient(circle,rgba(34,46,54,.72) 0%,rgba(24,38,47,.52) 42%,rgba(16,24,32,0) 74%);pointer-events:none}
+.network-visual img{z-index:2;mask-image:radial-gradient(ellipse 76% 76% at 50% 48%,#000 48%,rgba(0,0,0,.96) 62%,rgba(0,0,0,.62) 78%,transparent 100%);-webkit-mask-image:radial-gradient(ellipse 76% 76% at 50% 48%,#000 48%,rgba(0,0,0,.96) 62%,rgba(0,0,0,.62) 78%,transparent 100%)}
+.network-visual .orbit{z-index:3}
+.network-visual .node,.network-visual .network-caption{z-index:4}
+@media(max-width:800px){
+ .network-visual::before{width:min(96%,440px)}
+ .network-visual img{mask-image:radial-gradient(ellipse 82% 78% at 50% 48%,#000 48%,rgba(0,0,0,.96) 64%,rgba(0,0,0,.58) 82%,transparent 100%);-webkit-mask-image:radial-gradient(ellipse 82% 78% at 50% 48%,#000 48%,rgba(0,0,0,.96) 64%,rgba(0,0,0,.58) 82%,transparent 100%)}
+}
