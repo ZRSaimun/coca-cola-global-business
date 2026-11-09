@@ -60,7 +60,7 @@
     const w = canvasWidth, h = canvasHeight;
     const mobile = w <= 780;
     const maxW = mobile ? w * .96 : w * .70;
-    const maxH = mobile ? h * .58 : h * .90;
+    const maxH = mobile ? h * (h < 680 ? .45 : .54) : h * .90;
     const scale = Math.min(maxW / img.naturalWidth, maxH / img.naturalHeight);
     const dw = img.naturalWidth * scale, dh = img.naturalHeight * scale;
     const x = mobile ? (w - dw) / 2 : clamp(w * .67 - dw / 2, w * .29, w - dw);
