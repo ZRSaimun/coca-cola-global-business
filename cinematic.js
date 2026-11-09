@@ -99,47 +99,15 @@
     painted = '';
   }
 
-  // Draw one frame. Wide shots fill the screen and pan; square shots sit centred at
-  // full height and melt into the dark at their sides, so nothing looks boxed.
-  function drawFrame(i, alpha, fx, push) {
-    const f = frames[i];
-    const img = f.img;
+  // Frame composition prioritizes the full source image on every viewport.
+  function drawFrame(i, alpha) {
+    const f = frames[i], img = f.img;
     const iw = img.naturalWidth, ih = img.naturalHeight;
+    const scale = Math.min(W / iw, H / ih);
+    const dw = iw * scale, dh = ih * scale;
+    const x = (W - dw) / 2, y = (H - dh) / 2;
     ctx.globalAlpha = alpha;
-    if (f.wide) {
-      // Show most of the wide shot (about 70% on a laptop, a third on a phone) and
-      // let the camera pan, rather than zooming into a soft close-up.
-      const visible = clamp((W / H) * .42, .3, .72);
-      const scale = Math.max(W / iw, Math.min(H / ih, W / (visible * iw))) * push;
-      const dw = iw * scale, dh = ih * scale;
-      const x = clamp(W / 2 - fx * dw, W - dw, 0);
-      const y = (H - dh) / 2;
-      ctx.drawImage(img, x, y, dw, dh);
-      if (y > 0) {
-        // Letterboxed: melt top and bottom edges into the background.
-        const feather = Math.min(dh * .22, 90);
-        let g = ctx.createLinearGradient(0, y, 0, y + feather);
-        g.addColorStop(0, BG); g.addColorStop(1, 'rgba(11,16,21,0)');
-        ctx.fillStyle = g; ctx.fillRect(0, y - 1, W, feather + 1);
-        g = ctx.createLinearGradient(0, y + dh, 0, y + dh - feather);
-        g.addColorStop(0, BG); g.addColorStop(1, 'rgba(11,16,21,0)');
-        ctx.fillStyle = g; ctx.fillRect(0, y + dh - feather, W, feather + 1);
-      }
-    } else {
-      const side = (W < H ? H : Math.min(H, W)) * push;
-      const x = (W - side) / 2, y = (H - side) / 2;
-      ctx.drawImage(img, x, y, side, side);
-      if (x > 0) {
-        // Melt the left and right edges into the background.
-        const feather = side * .2;
-        let g = ctx.createLinearGradient(x, 0, x + feather, 0);
-        g.addColorStop(0, BG); g.addColorStop(1, 'rgba(11,16,21,0)');
-        ctx.fillStyle = g; ctx.fillRect(x - 1, 0, feather + 1, H);
-        g = ctx.createLinearGradient(x + side, 0, x + side - feather, 0);
-        g.addColorStop(0, BG); g.addColorStop(1, 'rgba(11,16,21,0)');
-        ctx.fillStyle = g; ctx.fillRect(x + side - feather, 0, feather + 1, H);
-      }
-    }
+    ctx.drawImage(img, x, y, dw, dh);
     ctx.globalAlpha = 1;
   }
 
